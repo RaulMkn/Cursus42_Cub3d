@@ -6,12 +6,12 @@
 /*   By: ruortiz- <ruortiz-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/14 00:00:00 by ruortiz-          #+#    #+#             */
-/*   Updated: 2026/04/14 00:00:00 by ruortiz-         ###   ########.fr       */
+/*   Updated: 2026/04/14 20:55:54 by ruortiz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <stdio.h>
+#include "../libft/libft.h"
 
 #define ENTRY_H		52
 #define ENTRY_X		80
@@ -36,13 +36,35 @@ static void	fill_rect(t_menu *m, int *r, int color)
 	}
 }
 
+static void	render_highlight(t_menu *m, int *r)
+{
+	r[2] = ENTRY_W;
+	fill_rect(m, r, 0x1A3A5C);
+	r[2] = 4;
+	fill_rect(m, r, 0x4A90D9);
+}
+
+static char	*build_label(int idx, char *name)
+{
+	char	*num;
+	char	*tmp;
+	char	*label;
+
+	num = ft_itoa(idx);
+	tmp = ft_strjoin(num, ".  ");
+	label = ft_strjoin(tmp, name);
+	free(num);
+	free(tmp);
+	return (label);
+}
+
 static void	render_items(t_menu *m)
 {
 	int		i;
 	int		y;
 	int		color;
-	char	buf[64];
 	int		r[4];
+	char	*label;
 
 	i = -1;
 	while (++i < m->count)
@@ -54,14 +76,12 @@ static void	render_items(t_menu *m)
 		color = 0x888888;
 		if (i == m->selected)
 		{
-			r[2] = ENTRY_W;
-			fill_rect(m, r, 0x1A3A5C);
-			r[2] = 4;
-			fill_rect(m, r, 0x4A90D9);
+			render_highlight(m, r);
 			color = 0xFFFFFF;
 		}
-		snprintf(buf, sizeof(buf), "%d.  %s", i + 1, m->names[i]);
-		mlx_string_put(m->mlx, m->win, ENTRY_X + 16, y + 12, color, buf);
+		label = build_label(i + 1, m->names[i]);
+		mlx_string_put(m->mlx, m->win, ENTRY_X + 16, y + 12, color, label);
+		free(label);
 	}
 }
 
@@ -69,7 +89,7 @@ void	render_menu(t_menu *m)
 {
 	mlx_clear_window(m->mlx, m->win);
 	mlx_string_put(m->mlx, m->win, 200, 70, 0xFFFFFF,
-		"CUB3D  -  Elige un mapa");
+		"cub3D  -  Elige un mapa");
 	mlx_string_put(m->mlx, m->win, 85, 115, 0x666666,
 		"Flechas: navegar  |  Enter: jugar  |  ESC: salir");
 	render_items(m);

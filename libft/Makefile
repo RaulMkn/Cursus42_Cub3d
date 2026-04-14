@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rmakende <rmakende@student.42.fr>          +#+  +:+       +#+         #
+#    By: ruortiz- <ruortiz-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/17 19:11:54 by rmakende          #+#    #+#              #
-#    Updated: 2025/05/14 21:12:23 by rmakende         ###   ########.fr        #
+#    Updated: 2026/04/14 21:14:54 by ruortiz-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,4 +91,5 @@ fclean: clean
 	$(RM) $(NAME) $(BNS)
 
 re: fclean all
+
 .PHONY: all fclean re clean

@@ -17,7 +17,7 @@ static int	check_extension(const char *path)
 	char	*dot;
 
 	dot = ft_strrchr(path, '.');
-	if (!dot || dot == path)
+	if (!dot || dot == path || *(dot - 1) == '/')
 		return (1);
 	if (ft_strncmp(dot, ".cub", 5) != 0)
 		return (1);

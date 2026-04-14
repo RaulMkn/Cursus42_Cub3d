@@ -72,7 +72,10 @@ static char	*build_map_row(const char *src, int width)
 	i = 0;
 	while (i < src_len && i < width)
 	{
-		row[i] = src[i];
+		if (src[i] == '\t')
+			row[i] = ' ';
+		else
+			row[i] = src[i];
 		i++;
 	}
 	while (i < width)
