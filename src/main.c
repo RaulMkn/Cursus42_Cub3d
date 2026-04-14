@@ -1,11 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ruortiz- <ruortiz-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/13 00:00:00 by ruortiz-          #+#    #+#             */
+/*   Updated: 2026/04/13 00:00:00 by ruortiz-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 #include "../parsing/parser.h"
-#include <stdio.h>
 
-static void	init_game_zero(t_game *game)
+static void	init_game_fields(t_game *game)
 {
-	int	i;
-
 	game->map = NULL;
 	game->map_width = 0;
 	game->map_height = 0;
@@ -21,6 +30,12 @@ static void	init_game_zero(t_game *game)
 	game->dir_y = 0;
 	game->plane_x = 0;
 	game->plane_y = 0;
+}
+
+static void	init_game_win(t_game *game)
+{
+	int	i;
+
 	game->mlx_ptr = NULL;
 	game->win_ptr = NULL;
 	game->win_width = WIN_WIDTH;
@@ -38,6 +53,12 @@ static void	init_game_zero(t_game *game)
 	game->keys.d = 0;
 	game->keys.left = 0;
 	game->keys.right = 0;
+}
+
+static void	init_game_zero(t_game *game)
+{
+	init_game_fields(game);
+	init_game_win(game);
 }
 
 int	main(int argc, char **argv)

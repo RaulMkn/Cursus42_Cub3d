@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ruortiz- <ruortiz-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/13 00:00:00 by ruortiz-          #+#    #+#             */
+/*   Updated: 2026/04/13 00:00:00 by ruortiz-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -25,7 +37,7 @@ typedef struct s_img
 	int		endian;
 	int		width;
 	int		height;
-}t_img;
+}	t_img;
 
 typedef struct s_keys
 {
@@ -35,7 +47,7 @@ typedef struct s_keys
 	int	d;
 	int	left;
 	int	right;
-}t_keys;
+}	t_keys;
 
 typedef struct s_ray
 {
@@ -61,7 +73,7 @@ typedef struct s_ray
 	double	tex_step;
 	double	tex_pos;
 	int		tex_index;
-}t_ray;
+}	t_ray;
 
 typedef struct s_game
 {
@@ -87,7 +99,7 @@ typedef struct s_game
 	t_img	screen;
 	t_img	tex[4];
 	t_keys	keys;
-}t_game;
+}	t_game;
 
 int		game_start(t_game *game);
 int		game_loop(t_game *game);

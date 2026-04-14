@@ -12,8 +12,8 @@
 
 NAME		= cub3D
 
-CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror -g
+CC			= cc
+CFLAGS		= -Wall -Wextra -Werror
 RM			= rm -f
 
 # Directories
@@ -82,6 +82,8 @@ fclean: clean
 	$(RM) $(NAME)
 	$(MAKE) -C $(LIBFT_DIR) fclean
 
+bonus: $(LIBFT) $(LIBMLX) $(NAME)
+
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
