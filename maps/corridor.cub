@@ -1,7 +1,7 @@
-NO ./src/minilibx-linux/test/open.xpm
-SO ./src/minilibx-linux/test/open.xpm
-WE ./src/minilibx-linux/test/open.xpm
-EA ./src/minilibx-linux/test/open.xpm
+NO ./minilibx-linux/test/open.xpm
+SO ./minilibx-linux/test/open.xpm
+WE ./minilibx-linux/test/open.xpm
+EA ./minilibx-linux/test/open.xpm
 
 F 100,100,100
 C 20,20,50

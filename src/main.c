@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "../parsing/parser.h"
+#include "../include/parser.h"
 
 static void	init_game_fields(t_game *game)
 {
