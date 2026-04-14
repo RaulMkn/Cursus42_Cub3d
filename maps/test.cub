@@ -1,0 +1,15 @@
+NO ./src/minilibx-linux/test/open.xpm
+SO ./src/minilibx-linux/test/open.xpm
+WE ./src/minilibx-linux/test/open.xpm
+EA ./src/minilibx-linux/test/open.xpm
+
+F 220,100,0
+C 50,50,200
+
+111111111111
+100000000001
+101000000001
+1010N0000001
+101000000001
+100000000001
+111111111111

@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void	free_split(char **array)
+void	ft_free_split(char **array)
 {
 	int	i;
 

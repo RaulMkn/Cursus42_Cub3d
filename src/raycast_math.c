@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycast_math.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ruortiz- <ruortiz-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/13 00:00:00 by ruortiz-          #+#    #+#             */
+/*   Updated: 2026/04/13 00:00:00 by ruortiz-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static void	select_texture(t_ray *ray)
@@ -36,19 +48,31 @@ void	ray_set_start(t_game *game, t_ray *ray, int x)
 	ray->ray_dir_y = game->dir_y + game->plane_y * ray->camera_x;
 	ray->map_x = (int)game->player_x;
 	ray->map_y = (int)game->player_y;
-	ray->delta_dist_x = (ray->ray_dir_x == 0) ? 1e30 : fabs(1.0 / ray->ray_dir_x);
-	ray->delta_dist_y = (ray->ray_dir_y == 0) ? 1e30 : fabs(1.0 / ray->ray_dir_y);
+	if (ray->ray_dir_x == 0)
+		ray->delta_dist_x = 1e30;
+	else
+		ray->delta_dist_x = fabs(1.0 / ray->ray_dir_x);
+	if (ray->ray_dir_y == 0)
+		ray->delta_dist_y = 1e30;
+	else
+		ray->delta_dist_y = fabs(1.0 / ray->ray_dir_y);
 	ray->hit = 0;
 }
 
 void	ray_set_projection(t_game *game, t_ray *ray)
 {
+	double	offset;
+
 	if (ray->side == 0)
-		ray->perp_dist = (ray->map_x - game->player_x +
-			(1 - ray->step_x) / 2.0) / ray->ray_dir_x;
+	{
+		offset = ray->map_x - game->player_x + (1 - ray->step_x) / 2.0;
+		ray->perp_dist = offset / ray->ray_dir_x;
+	}
 	else
-		ray->perp_dist = (ray->map_y - game->player_y +
-			(1 - ray->step_y) / 2.0) / ray->ray_dir_y;
+	{
+		offset = ray->map_y - game->player_y + (1 - ray->step_y) / 2.0;
+		ray->perp_dist = offset / ray->ray_dir_y;
+	}
 	ray->line_height = (int)(game->win_height / ray->perp_dist);
 	ray->draw_start = -ray->line_height / 2 + game->win_height / 2;
 	if (ray->draw_start < 0)
@@ -60,9 +84,11 @@ void	ray_set_projection(t_game *game, t_ray *ray)
 
 void	ray_set_sampling(t_game *game, t_ray *ray)
 {
+	int		offset;
+
 	select_texture(ray);
 	set_texture_coord(game, ray);
 	ray->tex_step = 1.0 * game->tex[ray->tex_index].height / ray->line_height;
-	ray->tex_pos = (ray->draw_start - game->win_height / 2 +
-		ray->line_height / 2) * ray->tex_step;
+	offset = ray->draw_start - game->win_height / 2 + ray->line_height / 2;
+	ray->tex_pos = offset * ray->tex_step;
 }
