@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ruortiz- <ruortiz-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rmakende <rmakende@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/13 00:00:00 by ruortiz-          #+#    #+#             */
-/*   Updated: 2026/04/13 00:00:00 by ruortiz-         ###   ########.fr       */
+/*   Created: 2026/02/27 01:10:39 by rmakende          #+#    #+#             */
+/*   Updated: 2026/04/14 21:13:16 by rmakende         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "../parsing/parser.h"
+#include "../include/parser.h"
 
 static void	init_game_fields(t_game *game)
 {
