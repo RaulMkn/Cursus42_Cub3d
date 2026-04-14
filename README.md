@@ -1,4 +1,4 @@
-*This project has been created as part of the 42 curriculum by ruortiz-.*
+*This project has been created as part of the 42 curriculum by ruortiz- and rmakende.*
 
 # cub3D — My first RayCaster with miniLibX
 
@@ -79,7 +79,6 @@ C 50,50,200
 | `make clean` | Remove object files |
 | `make fclean` | Remove object files and binary |
 | `make re` | Full rebuild |
-| `make bonus` | Build with bonus features |
 
 ## Resources
 
@@ -92,11 +91,12 @@ C 50,50,200
 
 ### AI usage
 
-AI tools (Claude) were used in this project for the following tasks:
+AI tools (Antigravity by Google DeepMind and Claude) were used in this project for the following tasks:
 
 - **Parser design**: Getting ideas on how to structure the `.cub` file parser into separate phases (load → header → map build → validate → transfer). The logic was reviewed, understood, and rewritten manually.
 - **Norminette compliance checking**: Asking the AI to flag functions longer than 25 lines or with too many local variables, then fixing them manually.
-- **Debugging**: Describing specific segfault scenarios and getting suggestions on where to look. All fixes were applied and understood by the student.
+- **Debugging & Fixing**: Describing specific execution scenarios causing issues (like map texture loading failures) and getting suggestions on where to look.
+- **Project Structure**: Modifying Makefile compilation rules to correctly integrate the `minilibx-linux` library, generating compliant 42 File Headers dynamically, and managing realistic file metadata.
 - **README structure**: The AI suggested the sections required by the subject; the content was written and verified by the student.
 
 All AI-generated suggestions were critically reviewed, tested, and adapted. No code was copied blindly — every function in this project can be explained by the author.
