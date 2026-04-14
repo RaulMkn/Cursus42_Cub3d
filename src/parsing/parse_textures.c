@@ -29,17 +29,22 @@ static char	**get_texture_field(t_parse *p, int id)
 static char	*extract_texture_path(const char *line, int prefix_len)
 {
 	char	*path;
+	char	*dup;
 	char	*dot;
 
 	path = skip_spaces((char *)(line + prefix_len));
 	if (!path || path[0] == '\0')
 		return (NULL);
-	dot = ft_strrchr(path, '.');
+	dup = ft_strdup(path);
+	if (!dup)
+		return (NULL);
+	trim_trailing(dup);
+	dot = ft_strrchr(dup, '.');
 	if (!dot)
-		return (NULL);
+		return (free(dup), NULL);
 	if (ft_strncmp(dot, ".xpm", 5) != 0)
-		return (NULL);
-	return (ft_strdup(path));
+		return (free(dup), NULL);
+	return (dup);
 }
 
 int	parse_texture_line(t_parse *p, const char *line, int id)

@@ -12,19 +12,37 @@
 
 #include "parser.h"
 
+static int	visual_width(const char *s)
+{
+	int	col;
+	int	i;
+
+	col = 0;
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == '\t')
+			col = (col / 4 + 1) * 4;
+		else
+			col++;
+		i++;
+	}
+	return (col);
+}
+
 static int	find_map_width(t_parse *p, int start_idx)
 {
 	int	max;
-	int	len;
+	int	w;
 	int	i;
 
 	max = 0;
 	i = start_idx;
 	while (i < p->line_count)
 	{
-		len = (int)ft_strlen(p->lines[i]);
-		if (len > max)
-			max = len;
+		w = visual_width(p->lines[i]);
+		if (w > max)
+			max = w;
 		i++;
 	}
 	return (max);
@@ -62,27 +80,29 @@ static int	find_map_height(t_parse *p, int start_idx)
 static char	*build_map_row(const char *src, int width)
 {
 	char	*row;
-	int		src_len;
+	int		col;
+	int		next_stop;
 	int		i;
 
 	row = malloc(sizeof(char) * (width + 1));
 	if (!row)
 		return (NULL);
-	src_len = (int)ft_strlen(src);
+	col = 0;
 	i = 0;
-	while (i < src_len && i < width)
+	while (src[i] && col < width)
 	{
 		if (src[i] == '\t')
-			row[i] = ' ';
+		{
+			next_stop = (col / 4 + 1) * 4;
+			while (col < next_stop && col < width)
+				row[col++] = ' ';
+		}
 		else
-			row[i] = src[i];
+			row[col++] = src[i];
 		i++;
 	}
-	while (i < width)
-	{
-		row[i] = ' ';
-		i++;
-	}
+	while (col < width)
+		row[col++] = ' ';
 	row[width] = '\0';
 	return (row);
 }

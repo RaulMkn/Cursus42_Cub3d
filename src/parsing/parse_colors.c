@@ -66,6 +66,9 @@ static int	parse_color_value(const char *value_str, int *color_out)
 		ft_free_split(parts);
 		return (1);
 	}
+	trim_trailing(parts[0]);
+	trim_trailing(parts[1]);
+	trim_trailing(parts[2]);
 	if (parse_rgb_component(parts[0], &r)
 		|| parse_rgb_component(parts[1], &g)
 		|| parse_rgb_component(parts[2], &b)

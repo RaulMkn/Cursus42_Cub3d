@@ -58,10 +58,11 @@ void	scan_maps(t_menu *m)
 	if (!dir)
 		return ;
 	e = readdir(dir);
-	while (e && m->count < MAX_MAPS)
+	while (e && m->count < MAX_MENU_MAPS)
 	{
 		len = ft_strlen(e->d_name);
-		if (len > 4 && ft_strncmp(e->d_name + len - 4, ".cub", 5) == 0)
+		if (len > 4 && ft_strncmp(e->d_name + len - 4, ".cub", 5) == 0
+			&& (len - 4) <= MAX_NAME_LEN)
 		{
 			ft_strlcpy(p, "maps/", sizeof(p));
 			ft_strlcat(p, e->d_name, sizeof(p));

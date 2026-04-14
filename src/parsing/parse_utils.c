@@ -19,6 +19,16 @@ char	*skip_spaces(char *str)
 	return (str);
 }
 
+void	trim_trailing(char *str)
+{
+	int	len;
+
+	len = (int)ft_strlen(str);
+	while (len > 0
+		&& (str[len - 1] == ' ' || str[len - 1] == '\t'))
+		str[--len] = '\0';
+}
+
 int	is_empty_line(const char *line)
 {
 	if (!line)

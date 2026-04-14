@@ -28,6 +28,8 @@
 # define MOVE_SPEED 0.08
 # define ROT_SPEED 0.05
 # define MAX_MAPS 32
+# define MAX_MENU_MAPS 4
+# define MAX_NAME_LEN 16
 
 typedef struct s_menu
 {

@@ -1,15 +1,15 @@
-NO ./minilibx-linux/test/open.xpm
-SO ./minilibx-linux/test/open.xpm
-WE ./minilibx-linux/test/open.xpm
-EA ./minilibx-linux/test/open.xpm
+	NO  ./minilibx-linux/test/open.xpm	
+ SO 	./minilibx-linux/test/open.xpm  	 
+	 	WE   	./minilibx-linux/test/open.xpm 
+EA ./minilibx-linux/test/open.xpm	
 
-F 220,100,0
-C 50,50,200
-
+F 50 ,			99999999999999999999999999999	,   50 	
+C 50 ,   50 	 		,  200 	
+		 
 111111111111
-100000000001
-101000000001
-1010N0000001
-101000000001
+100000000001	
+101000000001 
+1010W0000001
+101000000001                  			
 100000000001
 111111111111

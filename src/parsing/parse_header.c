@@ -54,16 +54,18 @@ static int	all_headers_found(t_parse *p)
 
 int	parse_header(t_parse *p)
 {
-	int	i;
+	int		i;
+	char	*line;
 
 	i = 0;
 	while (i < p->line_count)
 	{
-		if (is_empty_line(p->lines[i]))
+		line = skip_spaces(p->lines[i]);
+		if (is_empty_line(line))
 			i++;
-		else if (get_header_id(p->lines[i]) != -1)
+		else if (get_header_id(line) != -1)
 		{
-			if (parse_one_header(p, p->lines[i]) != 0)
+			if (parse_one_header(p, line) != 0)
 				return (-1);
 			i++;
 		}

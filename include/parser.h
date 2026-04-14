@@ -73,6 +73,7 @@ int		parse_error(t_parse *p, const char *msg);
 
 /* --- parse_utils.c --- */
 char	*skip_spaces(char *str);
+void	trim_trailing(char *str);
 int		is_empty_line(const char *line);
 int		str_is_digits(const char *str);
 char	**realloc_lines(char **old, int old_count);
