@@ -61,25 +61,30 @@ static void	init_game_zero(t_game *game)
 	init_game_win(game);
 }
 
+static char	*get_map_path(int argc, char **argv, int *from_menu)
+{
+	char	*path;
+
+	*from_menu = 0;
+	if (argc == 1)
+	{
+		path = show_map_menu();
+		*from_menu = 1;
+		return (path);
+	}
+	if (argc == 2)
+		return (argv[1]);
+	ft_printf("Usage: %s [map.cub]\n", argv[0]);
+	return (NULL);
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
 	char	*map_path;
 	int		from_menu;
 
-	from_menu = 0;
-	if (argc == 1)
-	{
-		map_path = show_map_menu();
-		from_menu = 1;
-	}
-	else if (argc == 2)
-		map_path = argv[1];
-	else
-	{
-		ft_printf("Usage: %s [map.cub]\n", argv[0]);
-		return (1);
-	}
+	map_path = get_map_path(argc, argv, &from_menu);
 	if (!map_path)
 		return (1);
 	init_game_zero(&game);
@@ -94,7 +99,7 @@ int	main(int argc, char **argv)
 		free(map_path);
 	if (game_start(&game) != 0)
 	{
-		write(2, "Error\nFailed to start game (check textures/display)\n", 52);
+		write(2, "Error\nFailed to start game.\n", 29);
 		free_game_data(&game);
 		return (1);
 	}

@@ -25,7 +25,7 @@
 **    - t_game es la estructura del motor (render, mlx, etc.).
 **    - t_parse es solo para el parser: guarda líneas del fichero,
 **      estado intermedio, y datos antes de validarlos.
-**    - Al terminar el parse, transferimos ownership a t_game y liberamos t_parse.
+**    - Al final transfiere datos a t_game y se libera t_parse.
 **
 ** CAMPOS DE t_parse:
 **    lines       → array de strings con cada línea del .cub (raw)

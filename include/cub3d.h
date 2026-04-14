@@ -27,6 +27,18 @@
 # define TEX_EA 3
 # define MOVE_SPEED 0.08
 # define ROT_SPEED 0.05
+# define MAX_MAPS 32
+
+typedef struct s_menu
+{
+	void	*mlx;
+	void	*win;
+	char	*maps[MAX_MAPS];
+	char	*names[MAX_MAPS];
+	int		count;
+	int		selected;
+	int		done;
+}	t_menu;
 
 typedef struct s_img
 {
@@ -133,5 +145,8 @@ void	destroy_screen(t_game *game);
 void	free_game_data(t_game *game);
 
 char	*show_map_menu(void);
+void	render_menu(t_menu *m);
+void	scan_maps(t_menu *m);
+void	free_menu_data(t_menu *m);
 
 #endif

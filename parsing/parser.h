@@ -12,31 +12,12 @@
 
 /*
 ** PARSER.H
-** =========
 ** Header exclusivo del parser. No mezcles esto con cub3d.h.
-**
 ** CONTIENE:
-** 1. Include de cub3d.h (para tener t_game) y libft.
-** 2. La estructura t_parse: almacén temporal durante el parseo.
-**    Una vez parseado todo, sus datos se transfieren a t_game y se libera.
-** 3. Prototipos de todas las funciones del parser organizados por archivo.
-**
-** POR QUE t_parse SEPARADO DE t_game:
-**    - t_game es la estructura del motor (render, mlx, etc.).
-**    - t_parse es solo para el parser: guarda líneas del fichero,
-**      estado intermedio, y datos antes de validarlos.
-**    - Al terminar: transfiere ownership a t_game y libera t_parse.
-**
-** CAMPOS DE t_parse:
-**    lines       → array de strings con cada línea del .cub (raw)
-**    line_count  → número total de líneas leídas
-**    no/so/we/ea → rutas de texturas. NULL = aún no parseado.
-**    floor_color / ceiling_color → -1 = aún no parseado.
-**    map         → mapa normalizado (rectangular, relleno con ' ')
-**    map_w/map_h → dimensiones del mapa normalizado
-**    spawn_found → contador de spawns (debe ser exactamente 1 al final)
-**    spawn_x/y   → posición de la celda de spawn en el mapa
-**    spawn_dir   → 'N', 'S', 'E' o 'W'
+** 1. Include e structs.
+** 2. t_parse para datos intermedios.
+** 3. Prototipos de funciones.
+** CAMPOS DE t_parse documentados en el codigo.
 */
 
 #ifndef PARSER_H

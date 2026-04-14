@@ -63,7 +63,7 @@ static int	parse_color_value(const char *value_str, int *color_out)
 	parts = ft_split(value_str, ',');
 	if (!parts || count_split(parts) != 3)
 	{
-		free_split(parts);
+		ft_free_split(parts);
 		return (1);
 	}
 	if (parse_rgb_component(parts[0], &r)
@@ -71,10 +71,10 @@ static int	parse_color_value(const char *value_str, int *color_out)
 		|| parse_rgb_component(parts[2], &b)
 		|| check_no_extra(skip_spaces((char *)parts[2])))
 	{
-		free_split(parts);
+		ft_free_split(parts);
 		return (1);
 	}
-	free_split(parts);
+	ft_free_split(parts);
 	*color_out = (r << 16) | (g << 8) | b;
 	return (0);
 }

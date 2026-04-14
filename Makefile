@@ -18,9 +18,9 @@ RM			= rm -f
 
 # Directories
 LIBFT_DIR	= libft
-MLX_DIR		= src/minilibx-linux
+MLX_DIR		= minilibx-linux
 INC_DIR		= include
-PARSE_DIR	= parsing
+PARSE_DIR	= src/parsing
 SRC_DIR		= src
 
 # Libraries
@@ -36,6 +36,8 @@ SRC_FILES	= $(SRC_DIR)/main.c \
 			  $(SRC_DIR)/init.c \
 			  $(SRC_DIR)/input.c \
 			  $(SRC_DIR)/menu.c \
+			  $(SRC_DIR)/menu_render.c \
+			  $(SRC_DIR)/menu_utils.c \
 			  $(SRC_DIR)/move.c \
 			  $(SRC_DIR)/update_player.c \
 			  $(SRC_DIR)/collision.c \
@@ -67,7 +69,7 @@ $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
 $(LIBMLX):
-	cd $(MLX_DIR) && chmod +x configure && ./configure
+	$(MAKE) -C $(MLX_DIR)
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
@@ -78,13 +80,12 @@ $(NAME): $(OBJS)
 clean:
 	$(RM) $(OBJS)
 	$(MAKE) -C $(LIBFT_DIR) clean
+	$(MAKE) -C $(MLX_DIR) clean
 
 fclean: clean
 	$(RM) $(NAME)
 	$(MAKE) -C $(LIBFT_DIR) fclean
 
-bonus: $(LIBFT) $(LIBMLX) $(NAME)
-
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
