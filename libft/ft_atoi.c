@@ -31,11 +31,11 @@ static int	check_spaces(const char *str)
 	return (i);
 }
 
-int	ft_atoi(const char *str, int *flag)
+unsigned long	ft_atoi(const char *str, int *flag)
 {
-	int		i;
-	long	sum;
-	int		mult;
+	int				i;
+	unsigned long	sum;
+	int				mult;
 
 	i = check_spaces(str);
 	sum = 0;
@@ -46,15 +46,14 @@ int	ft_atoi(const char *str, int *flag)
 			mult = -1;
 		i++;
 	}
-	if (str[i] == '+' || str[i] == '-')
-		return (0);
 	while (str[i] != '\0')
 	{
 		if (!ft_isdigit(str[i]))
 			return (0);
-		sum = (sum * 10) + (str[i] - '0');
-		if ((sum > 2147483647 && mult == 1) || (sum > 2147483648 && mult == -1))
+		if (sum > ULONG_MAX / 10 || (sum == ULONG_MAX / 10
+				&& (unsigned long)(str[i] - '0') > ULONG_MAX % 10))
 			return (*flag = 1, 0);
+		sum = (sum * 10) + (str[i] - '0');
 		i++;
 	}
 	return (sum * mult);

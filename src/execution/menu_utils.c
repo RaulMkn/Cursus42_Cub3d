@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "../libft/libft.h"
+#include "libft.h"
 #include <dirent.h>
 
 void	free_menu_data(t_menu *m)

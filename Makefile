@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ruortiz- <ruortiz-@student.42.fr>          +#+  +:+       +#+         #
+#    By: rmakende <rmakende@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/04/13 00:00:00 by ruortiz-          #+#    #+#              #
-#    Updated: 2026/04/13 00:00:00 by ruortiz-         ###   ########.fr        #
+#    Updated: 2026/04/14 22:51:09 by rmakende         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ LIBFT_DIR	= libft
 MLX_DIR		= minilibx-linux
 INC_DIR		= include
 PARSE_DIR	= src/parsing
+EXEC_DIR	= src/execution
 SRC_DIR		= src
 
 # Libraries
@@ -32,20 +33,20 @@ INCLUDES	= -I$(INC_DIR) -I$(MLX_DIR) -I$(LIBFT_DIR) -I$(PARSE_DIR)
 
 # Source files
 SRC_FILES	= $(SRC_DIR)/main.c \
-			  $(SRC_DIR)/game_start.c \
-			  $(SRC_DIR)/init.c \
-			  $(SRC_DIR)/input.c \
-			  $(SRC_DIR)/menu.c \
-			  $(SRC_DIR)/menu_render.c \
-			  $(SRC_DIR)/menu_utils.c \
-			  $(SRC_DIR)/move.c \
-			  $(SRC_DIR)/update_player.c \
-			  $(SRC_DIR)/collision.c \
-			  $(SRC_DIR)/render.c \
-			  $(SRC_DIR)/raycast.c \
-			  $(SRC_DIR)/raycast_math.c \
-			  $(SRC_DIR)/pixel.c \
-			  $(SRC_DIR)/cleanup.c
+			  $(EXEC_DIR)/game_start.c \
+			  $(EXEC_DIR)/init.c \
+			  $(EXEC_DIR)/input.c \
+			  $(EXEC_DIR)/menu.c \
+			  $(EXEC_DIR)/menu_render.c \
+			  $(EXEC_DIR)/menu_utils.c \
+			  $(EXEC_DIR)/move.c \
+			  $(EXEC_DIR)/update_player.c \
+			  $(EXEC_DIR)/collision.c \
+			  $(EXEC_DIR)/render.c \
+			  $(EXEC_DIR)/raycast.c \
+			  $(EXEC_DIR)/raycast_math.c \
+			  $(EXEC_DIR)/pixel.c \
+			  $(EXEC_DIR)/cleanup.c
 
 PARSE_FILES	= $(PARSE_DIR)/parse_main.c \
 			  $(PARSE_DIR)/parse_file.c \

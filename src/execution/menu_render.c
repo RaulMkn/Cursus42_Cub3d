@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "../libft/libft.h"
+#include "libft.h"
 
 #define ENTRY_H		52
 #define ENTRY_X		80
