@@ -64,18 +64,34 @@ static void	init_game_zero(t_game *game)
 int	main(int argc, char **argv)
 {
 	t_game	game;
+	char	*map_path;
+	int		from_menu;
 
-	if (argc != 2)
+	from_menu = 0;
+	if (argc == 1)
 	{
-		ft_printf("Usage: %s <map.cub>\n", argv[0]);
+		map_path = show_map_menu();
+		from_menu = 1;
+	}
+	else if (argc == 2)
+		map_path = argv[1];
+	else
+	{
+		ft_printf("Usage: %s [map.cub]\n", argv[0]);
 		return (1);
 	}
+	if (!map_path)
+		return (1);
 	init_game_zero(&game);
-	if (parse_cub_file(argv[1], &game) != 0)
+	if (parse_cub_file(map_path, &game) != 0)
 	{
-		ft_printf("Error\nFailed to parse map file: %s\n", argv[1]);
+		ft_printf("Error\nFailed to parse map file: %s\n", map_path);
+		if (from_menu)
+			free(map_path);
 		return (1);
 	}
+	if (from_menu)
+		free(map_path);
 	if (game_start(&game) != 0)
 	{
 		write(2, "Error\nFailed to start game (check textures/display)\n", 52);

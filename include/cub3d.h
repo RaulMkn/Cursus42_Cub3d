@@ -132,4 +132,6 @@ void	destroy_textures(t_game *game);
 void	destroy_screen(t_game *game);
 void	free_game_data(t_game *game);
 
+char	*show_map_menu(void);
+
 #endif

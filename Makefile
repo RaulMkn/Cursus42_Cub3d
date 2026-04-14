@@ -35,6 +35,7 @@ SRC_FILES	= $(SRC_DIR)/main.c \
 			  $(SRC_DIR)/game_start.c \
 			  $(SRC_DIR)/init.c \
 			  $(SRC_DIR)/input.c \
+			  $(SRC_DIR)/menu.c \
 			  $(SRC_DIR)/move.c \
 			  $(SRC_DIR)/update_player.c \
 			  $(SRC_DIR)/collision.c \
