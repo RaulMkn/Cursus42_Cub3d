@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "../libft/libft.h"
+#include "libft.h"
 #include <unistd.h>
 
 static int	menu_key_press(int key, t_menu *m)
