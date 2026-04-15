@@ -44,7 +44,6 @@ static int	menu_expose(t_menu *m)
 static int	menu_destroy(t_menu *m)
 {
 	m->done = -1;
-	m->win = NULL;
 	mlx_loop_end(m->mlx);
 	return (0);
 }
