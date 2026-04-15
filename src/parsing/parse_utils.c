@@ -19,6 +19,24 @@ char	*skip_spaces(char *str)
 	return (str);
 }
 
+int	visual_width(const char *s)
+{
+	int	col;
+	int	i;
+
+	col = 0;
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == '\t')
+			col = (col / 4 + 1) * 4;
+		else
+			col++;
+		i++;
+	}
+	return (col);
+}
+
 void	trim_trailing(char *str)
 {
 	int	len;
@@ -49,22 +67,4 @@ int	str_is_digits(const char *str)
 		str++;
 	}
 	return (1);
-}
-
-char	**realloc_lines(char **old, int old_count)
-{
-	char	**new_arr;
-	int		i;
-
-	new_arr = malloc(sizeof(char *) * (old_count + 1));
-	if (!new_arr)
-		return (NULL);
-	i = 0;
-	while (i < old_count)
-	{
-		new_arr[i] = old[i];
-		i++;
-	}
-	free(old);
-	return (new_arr);
 }

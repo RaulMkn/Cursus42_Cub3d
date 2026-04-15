@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   menu_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakende <rmakende@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ruortiz- <ruortiz-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/17 01:09:53 by rmakende          #+#    #+#             */
-/*   Updated: 2026/04/14 21:13:31 by rmakende         ###   ########.fr       */
+/*   Created: 2026/04/15 00:00:00 by rmakende          #+#    #+#             */
+/*   Updated: 2026/04/15 00:00:00 by ruortiz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 #include "libft.h"
-#include <dirent.h>
+#include "get_next_line.h"
 
 void	free_menu_data(t_menu *m)
 {
@@ -46,32 +46,50 @@ static char	*strip_cub_ext(const char *name)
 	return (out);
 }
 
-void	scan_maps(t_menu *m)
+static void	try_add_entry(t_menu *m, char *line)
 {
-	DIR				*dir;
-	struct dirent	*e;
-	char			p[512];
-	int				len;
+	char	p[512];
+	int		len;
 
-	m->count = 0;
-	dir = opendir("maps");
-	if (!dir)
-		return ;
-	e = readdir(dir);
-	while (e && m->count < MAX_MENU_MAPS)
+	len = (int)ft_strlen(line);
+	if (len > 0 && line[len - 1] == '\n')
+		line[--len] = '\0';
+	if (len > 4 && ft_strncmp(line + len - 4, ".cub", 5) == 0
+		&& (len - 4) <= MAX_NAME_LEN)
 	{
-		len = ft_strlen(e->d_name);
-		if (len > 4 && ft_strncmp(e->d_name + len - 4, ".cub", 5) == 0
-			&& (len - 4) <= MAX_NAME_LEN)
-		{
-			ft_strlcpy(p, "maps/", sizeof(p));
-			ft_strlcat(p, e->d_name, sizeof(p));
-			m->maps[m->count] = ft_strdup(p);
-			m->names[m->count] = strip_cub_ext(e->d_name);
-			if (m->maps[m->count] && m->names[m->count])
-				m->count++;
-		}
-		e = readdir(dir);
+		ft_strlcpy(p, "maps/", sizeof(p));
+		ft_strlcat(p, line, sizeof(p));
+		m->maps[m->count] = ft_strdup(p);
+		m->names[m->count] = strip_cub_ext(line);
+		if (m->maps[m->count] && m->names[m->count])
+			m->count++;
 	}
-	closedir(dir);
+}
+
+static void	scan_from_list(t_menu *m)
+{
+	int		fd;
+	char	*line;
+
+	fd = open("maps/maps.list", O_RDONLY);
+	if (fd < 0)
+		return ;
+	line = get_next_line(fd);
+	while (line && m->count < MAX_MENU_MAPS)
+	{
+		try_add_entry(m, line);
+		free(line);
+		line = get_next_line(fd);
+	}
+	if (line)
+		free(line);
+	close(fd);
+}
+
+void	scan_maps(t_menu *m, int argc, char **argv)
+{
+	(void)argc;
+	(void)argv;
+	m->count = 0;
+	scan_from_list(m);
 }

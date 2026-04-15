@@ -12,24 +12,6 @@
 
 #include "parser.h"
 
-static int	visual_width(const char *s)
-{
-	int	col;
-	int	i;
-
-	col = 0;
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == '\t')
-			col = (col / 4 + 1) * 4;
-		else
-			col++;
-		i++;
-	}
-	return (col);
-}
-
 static int	find_map_width(t_parse *p, int start_idx)
 {
 	int	max;
@@ -77,11 +59,19 @@ static int	find_map_height(t_parse *p, int start_idx)
 	return (count);
 }
 
+static void	expand_tab(char *row, int *col, int width)
+{
+	int	next_stop;
+
+	next_stop = (*col / 4 + 1) * 4;
+	while (*col < next_stop && *col < width)
+		row[(*col)++] = ' ';
+}
+
 static char	*build_map_row(const char *src, int width)
 {
 	char	*row;
 	int		col;
-	int		next_stop;
 	int		i;
 
 	row = malloc(sizeof(char) * (width + 1));
@@ -92,11 +82,7 @@ static char	*build_map_row(const char *src, int width)
 	while (src[i] && col < width)
 	{
 		if (src[i] == '\t')
-		{
-			next_stop = (col / 4 + 1) * 4;
-			while (col < next_stop && col < width)
-				row[col++] = ' ';
-		}
+			expand_tab(row, &col, width);
 		else
 			row[col++] = src[i];
 		i++;

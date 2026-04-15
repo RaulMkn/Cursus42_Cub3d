@@ -63,14 +63,11 @@ static void	init_game_zero(t_game *game)
 
 static char	*get_map_path(int argc, char **argv, int *from_menu)
 {
-	char	*path;
-
 	*from_menu = 0;
 	if (argc == 1)
 	{
-		path = show_map_menu();
 		*from_menu = 1;
-		return (path);
+		return (show_map_menu(argc, argv));
 	}
 	if (argc == 2)
 		return (argv[1]);

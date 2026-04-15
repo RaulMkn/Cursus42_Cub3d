@@ -6,7 +6,7 @@
 /*   By: ruortiz- <ruortiz-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 00:00:00 by ruortiz-          #+#    #+#             */
-/*   Updated: 2026/04/13 00:00:00 by ruortiz-         ###   ########.fr       */
+/*   Updated: 2026/04/15 10:56:58 by ruortiz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define CUB3D_H
 
 # include <stdlib.h>
+# include <stdio.h>
+# include <fcntl.h>
 # include <math.h>
 # include "mlx.h"
 # include <X11/X.h>
@@ -146,9 +148,9 @@ void	destroy_textures(t_game *game);
 void	destroy_screen(t_game *game);
 void	free_game_data(t_game *game);
 
-char	*show_map_menu(void);
+char	*show_map_menu(int argc, char **argv);
 void	render_menu(t_menu *m);
-void	scan_maps(t_menu *m);
+void	scan_maps(t_menu *m, int argc, char **argv);
 void	free_menu_data(t_menu *m);
 
 #endif

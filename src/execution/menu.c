@@ -68,13 +68,13 @@ static int	init_menu(t_menu *m)
 	return (0);
 }
 
-char	*show_map_menu(void)
+char	*show_map_menu(int argc, char **argv)
 {
 	t_menu	m;
 	char	*r;
 
 	ft_memset(&m, 0, sizeof(t_menu));
-	scan_maps(&m);
+	scan_maps(&m, argc, argv);
 	if (m.count == 0)
 		return (write(2, "Error\nNo maps\n", 14), NULL);
 	if (init_menu(&m) != 0)
